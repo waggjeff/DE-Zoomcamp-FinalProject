@@ -23,6 +23,10 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - create a project in GCP and download the json file
 
+- create a prefect account and copy the requirements from here: https://github.com/discdiver/prefect-zoomcamp/blob/main/requirements.txt
+
+- run 'pip install -r requirements.txt' and 'prefect orion start' in your conda environment on on the shell command line 
+
 - run 'etl_web_to_gcs_jfw.py' to upload a parquet file version of the data to GCS (make sure that the json file is in the working dir)
 
 - run 'etl_gcs_to_bq_jfw.py' to copy the data from 
