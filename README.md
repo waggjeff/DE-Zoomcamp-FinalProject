@@ -34,3 +34,5 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 - create a new dbt project with BigQuery as the data warehosue. In this case I called it stock_analysis_jfw. Upload the json key file to connect to BigQuery 
 
 - Once DBT project is inintialized, click on 'Develop'
+
+- create a branch of main repository and make a model in the models directory by creating a new file 
