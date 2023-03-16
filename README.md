@@ -35,4 +35,4 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - Once DBT project is inintialized, click on 'Develop'
 
-- create a branch of main repository and make a model in the models directory by creating a new file 
+- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the '' table in BigQuery 
