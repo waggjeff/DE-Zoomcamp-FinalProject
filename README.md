@@ -35,4 +35,6 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - Once DBT project is inintialized, click on 'Develop'
 
-- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the '' table in BigQuery 
+- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the 'mythic-byway-375404.stocks.nyse' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'nyse_newtable'. 
+
+- 
