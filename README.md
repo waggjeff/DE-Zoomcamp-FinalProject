@@ -37,4 +37,4 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the 'mythic-byway-375404.stocks.nyse' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'nyse_newtable'. 
 
-- 
+- Once the new table has been created in BigQuery, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('nyse_newtable') and choose 'Connect'. 
