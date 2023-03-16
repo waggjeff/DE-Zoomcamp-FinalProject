@@ -1,13 +1,15 @@
 ## Data Science Bootcamp Final Project: An Analysis of Financial Data from the NYSE
 ### Jeff Wagg - March, 2023
 
+For this project, we crete a pipeline that uses historical prices from the S&P500 stock index and does analysis of average gains and losses. ...
+
 #### Data
 
-In order to test our pipeline, we use data from the Kaggle financial datasets for the New York Stock Exchange (NYSE). The file we will use is: 
+We use data from Yahoo Finance which contains the historical data over a user-specified timeframe (search for symbol '^GSPC'). The file we will use is: 
 
-prices.csv: Daily stock prices for NYSE equities including opening closing price and daily stock volume. The data cover the time interval from 2010 until the end of 2016. 
+SP500_10yr.csv: Daily opening and closing prices along with the trading volume for the S&. The data cover the time interval from March, 2013 until March, 2023. 
 
-The file can be found here: https://www.kaggle.com/datasets/dgawlik/nyse
+The file can be created by copying the data found here: https://finance.yahoo.com/quote/%5EGSPC/history/
 
 #### Data Pipeline
 
@@ -35,4 +37,6 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - Once DBT project is inintialized, click on 'Develop'
 
-- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the '' table in BigQuery 
+- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the 'mythic-byway-375404.stocks.nyse' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'nyse_newtable'. 
+
+- Once the new table has been created in BigQuery, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('nyse_newtable') and choose 'Connect'. 
