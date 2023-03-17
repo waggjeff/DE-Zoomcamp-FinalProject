@@ -1,23 +1,23 @@
 ## Data Science Bootcamp Final Project: An Analysis of S&P500 Index Data
 ### Jeff Wagg - March, 2023
 
-For this project, we crete a pipeline that uses historical prices from the S&P500 stock index and does analysis of average gains and losses. ...
+The Standard and Poor's 500 (S&P500) stock index tracks the performance of 500 large US companies. It was founded in the late 1950s and is a good indicator of the economic health of the nation. Each day, the price of the index fund is updated and it would be useful to have an automatic means of calculating the typical gains achieved on a daily basis. To achieve this, we create a pipeline that uses historical price data (Open and Close price) from the S&P500, and processes these data in a pipeline. The pipeline is capable of calculating the daily gain of the index, and updates the tables in the Data Warehouse (BigQuery) on a daily basis (batch mode). 
 
 #### Data
 
 We use data from Yahoo Finance which contains the historical data over a user-specified timeframe (search for symbol '^GSPC'). The file we will use is: 
 
-SP500_10yr.csv: Daily opening and closing prices along with the trading volume for the S&. The data cover the time interval from March, 2013 until March, 2023. 
+SP500_10yr.csv: Daily opening and closing prices along with the trading volume for the S&P500. The data cover the time interval from March, 2013 until March, 2023. 
 
-The file can be created by copying the data found here: https://finance.yahoo.com/quote/%5EGSPC/history/
+The file can be created by scraping the data found here: https://finance.yahoo.com/quote/%5EGSPC/history/
 
 #### Data Pipeline
 
-For the pipeline itself, we will use Docker containers to copy the datasets from the csv files and upload them into the Google Cloud Platform (GCP). The processing will be done in batches so that in the future we can process new data on a daily basis. Data will first be uploaded into a datalake (Google storage Buckets) before being transported to a data warehouse (Bigquery) where it will be transformed. 
+For the pipeline itself, we will use Docker containers to copy the datasets from the csv files and upload them into the Google Cloud Platform (GCP). The processing will be done in batches so that in the future we can process new data on a daily basis. Data will first be uploaded into a datalake (Google storage Buckets) before being transported to a data warehouse (Bigquery) where it is then transformed using a DBT model. 
 
 #### Dashboard
 
-The tranformed data will be plotted in a dashboard using Google Studio. We plot ... 
+The tranformed data are plotted in a dashboard using Google Date Studio.  
 
 #### Processing Steps
 
@@ -45,19 +45,21 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 ```
 CASE 
-    WHEN gain >-50 AND gain<=-5.5 THEN -6
-    WHEN gain >-5.5 AND gain<=-4.5 THEN -5
-    WHEN gain >-4.5 AND gain<=-3.5 THEN -4
-    WHEN gain >-3.5 AND gain<=-2.5 THEN -3
-    WHEN gain >-2.5 AND gain<=-1.5 THEN -2
-    WHEN gain >-1.5 AND gain<=-0.5 THEN -1
-    WHEN gain >-0.5 AND gain<=0.5 THEN 0
-    WHEN gain >0.5 AND gain<=1.5 THEN 1
-    WHEN gain >1.5 AND gain<=2.5 THEN 2
-    WHEN gain >2.5 AND gain<=3.5 THEN 3
-    WHEN gain >3.5 AND gain<=4.5 THEN 4
-    WHEN gain >4.5 AND gain<=5.5 THEN 5
-    WHEN gain >5.5 AND gain<=50 THEN 6
+    WHEN gain >-50 AND gain<=-3.25 THEN -3.5
+    WHEN gain >-3.25 AND gain<=-2.75 THEN -3
+    WHEN gain >-2.75 AND gain<=-2.25 THEN -2.5
+    WHEN gain >-2.25 AND gain<=-1.75 THEN -2
+    WHEN gain >-1.75 AND gain<=-1.25 THEN -1.5
+    WHEN gain >-1.25 AND gain<=-0.75 THEN -1.0
+    WHEN gain >-0.75 AND gain<=-0.25 THEN -0.5
+    WHEN gain >-0.25 AND gain<=0.25 THEN 0.0
+    WHEN gain >0.25 AND gain<=0.75 THEN 0.5
+    WHEN gain >0.75 AND gain<=1.25 THEN 1.0
+    WHEN gain >1.25 AND gain<=1.75 THEN 1.5
+    WHEN gain >1.75 AND gain<=2.25 THEN 2.0
+    WHEN gain >2.25 AND gain<=2.75 THEN 2.5
+    WHEN gain >2.75 AND gain<=3.25 THEN 3.0
+    WHEN gain >3.25 AND gain<=50 THEN 3.5
 ELSE 0 END
 ```
 
