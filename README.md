@@ -37,9 +37,11 @@ The tranformed data are plotted in a dashboard using Google Date Studio.
 
 - Once DBT project is inintialized, click on 'Develop'
 
-- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the 'mythic-byway-375404.stocks.sp500' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'sp500_newtable'. 
+- create a branch of main repository and make a model in the models directory by creating a new file called 'sp500_newtable.sql'. In this case, the model updates the 'mythic-byway-375404.stocks.sp500' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'sp500_newtable'. 
 
-- Once the new table has been created in BigQuery, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('sp500_newtable') and choose 'Connect'. 
+- Now, once the BigQuery table is created, we want to be able to update this with the latest S&P500 data each day. That is where the batch job comes in. A python script called 'scrape_yahoo_finance.py' uses the 'yfinance' package to download the latest markt data from Yahoo Finance. It then runs a prefect flow to append the latest data to the 'sp500' table in BigQuery. The dbt model 'sp500_newtable.sql' can then be rerun to create the 'gain' column. 
+
+- Once the new table has been created in BigQuery and updated each day with a batch, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('sp500_newtable') and choose 'Connect'. 
 
 - In Google Data Studio, we create a new field called 'Daily gains (%)' in order to plot a histogram of the distribution of daily gains. To do this, we go to 'Add a field', set the Field Name as 'gainbin' and then add the following formula: 
 
