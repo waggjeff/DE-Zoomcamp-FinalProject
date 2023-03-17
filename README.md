@@ -1,4 +1,4 @@
-## Data Science Bootcamp Final Project: An Analysis of Financial Data from the NYSE
+## Data Science Bootcamp Final Project: An Analysis of S&P500 Index Data
 ### Jeff Wagg - March, 2023
 
 For this project, we crete a pipeline that uses historical prices from the S&P500 stock index and does analysis of average gains and losses. ...
@@ -37,6 +37,30 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - Once DBT project is inintialized, click on 'Develop'
 
-- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the 'mythic-byway-375404.stocks.nyse' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'nyse_newtable'. 
+- create a branch of main repository and make a model in the models directory by creating a new file. In this case, the model updates the 'mythic-byway-375404.stocks.sp500' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'sp500_newtable'. 
 
-- Once the new table has been created in BigQuery, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('nyse_newtable') and choose 'Connect'. 
+- Once the new table has been created in BigQuery, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('sp500_newtable') and choose 'Connect'. 
+
+- In Google Data Studio, we create a new field called 'Daily gains (%)' in order to plot a histogram of the distribution of daily gains. To do this, we go to 'Add a field', set the Field Name as 'gainbin' and then add the following formula: 
+
+```
+CASE 
+    WHEN gain >-50 AND gain<=-5.5 THEN -6
+    WHEN gain >-5.5 AND gain<=-4.5 THEN -5
+    WHEN gain >-4.5 AND gain<=-3.5 THEN -4
+    WHEN gain >-3.5 AND gain<=-2.5 THEN -3
+    WHEN gain >-2.5 AND gain<=-1.5 THEN -2
+    WHEN gain >-1.5 AND gain<=-0.5 THEN -1
+    WHEN gain >-0.5 AND gain<=0.5 THEN 0
+    WHEN gain >0.5 AND gain<=1.5 THEN 1
+    WHEN gain >1.5 AND gain<=2.5 THEN 2
+    WHEN gain >2.5 AND gain<=3.5 THEN 3
+    WHEN gain >3.5 AND gain<=4.5 THEN 4
+    WHEN gain >4.5 AND gain<=5.5 THEN 5
+    WHEN gain >5.5 AND gain<=50 THEN 6
+ELSE 0 END
+```
+
+- We now plot a time series of the S&P500 index price along with a histogram of the daily gains over the course of the time range of the data. 
+                               
+![My Dashboard](https://github.com/waggjeff/DE-Zoomcamp-FinalProject/blob/main/Analysis_of_Historical_S%26P500_Data.png "S&P500 dashboard made in Google Data Studio")
