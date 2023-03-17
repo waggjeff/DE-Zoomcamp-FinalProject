@@ -1,4 +1,4 @@
-## Data Science Bootcamp Final Project: An Analysis of Financial Data from the NYSE
+## Data Science Bootcamp Final Project: An Analysis of S&P500 Index Data
 ### Jeff Wagg - March, 2023
 
 For this project, we crete a pipeline that uses historical prices from the S&P500 stock index and does analysis of average gains and losses. ...
