@@ -41,7 +41,7 @@ The tranformed data will be plotted in a dashboard using Google Studio. We plot 
 
 - Once the new table has been created in BigQuery, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('sp500_newtable') and choose 'Connect'. 
 
-- In Google Data Studio, we create a new field called 'gainbin' in order to plot a histogram of the distribution of daily gains (%). To do this, we go to 'Add a field', set the Field Name as 'gainbin' and then add the following formula: 
+- In Google Data Studio, we create a new field called 'Daily gains (%)' in order to plot a histogram of the distribution of daily gains. To do this, we go to 'Add a field', set the Field Name as 'gainbin' and then add the following formula: 
 
 ```
 CASE 
@@ -61,4 +61,6 @@ CASE
 ELSE 0 END
 ```
 
-- we now plot a time series of the S&P500 price along with a histogram of the 
+- We now plot a time series of the S&P500 index price along with a histogram of the daily gains over the course 
+                               
+![My Dashboard](https://github.com/waggjeff/DE-Zoomcamp-FinalProject/blob/main/Analysis_of_Historical_S%26P500_Data.png "S&P500 dashboard made in Google Data Studio")
