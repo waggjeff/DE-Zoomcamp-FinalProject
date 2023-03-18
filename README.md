@@ -39,7 +39,14 @@ The tranformed data are plotted in a dashboard using Google Date Studio.
 
 - create a branch of main repository and make a model in the models directory by creating a new file called 'sp500_newtable.sql'. In this case, the model updates the 'mythic-byway-375404.stocks.sp500' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'sp500_newtable'. 
 
-- Now, once the BigQuery table is created, we want to be able to update this with the latest S&P500 data each day. That is where the batch job comes in. A python script called 'scrape_yahoo_finance.py' uses the 'yfinance' package to download the latest markt data from Yahoo Finance. It then runs a prefect flow to append the latest data to the 'sp500' table in BigQuery. The dbt model 'sp500_newtable.sql' can then be rerun to create the 'gain' column. 
+- Now, once the BigQuery table is created, we want to be able to update this with the latest S&P500 data each day. That is where the batch job comes in. A python script called 'scrape_yahoo_finance.py' uses the 'yfinance' package to download the latest market data from Yahoo Finance. It then runs a Prefect flow to append the latest data to the 'sp500' table in BigQuery. We crate a cron job so that this will run Tuesday through Saturday at 4:00 UTC after the markets have closed. 
+
+```
+crontab -e
+0 4 * * 2-6 /usr/bin/python3 /Users/j.wagg/DataScience/DataEngineeringBootcamp2023/DE-Zoomcamp-Homework/src/FinalProject/scrape_yahoo_finance.py
+```
+
+- The Transform of the latest data is done in DBT. We create an 'Environment' called 'DailyEnvironment' and set the Dataset to the project name we have chosen to host our DBT model (in my case, 'stock_analysis_jfw'). We then create a new job which we call 'DailyTransform' which uses 'DailyEnvironment' and issues the commands 'dbt build' 'dbt run'. This job is run on a schedule so that it executes at 5:00 UTC on Tuesday through Saturday, after the markets have closed. This job runs the dbt model 'sp500_newtable.sql' which then recreates the 'gain' column in 'sp500_newtable'. 
 
 - Once the new table has been created in BigQuery and updated each day with a batch, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('sp500_newtable') and choose 'Connect'. 
 
