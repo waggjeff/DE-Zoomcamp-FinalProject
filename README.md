@@ -13,7 +13,7 @@ The file can be created by scraping the data found here: https://finance.yahoo.c
 
 #### Data Pipeline
 
-For the pipeline itself, we use a combination of Python, Prefect and DBT to upload the data to a data lake and then a data warehouse in the Google Cloud Platform (GCP). The processing is done in batches so that new values can be uploaded after each trading day. The data are uploaded to the Google Coud Storage (GCS) Bucket data lake before being transported to a data warehouse (Bigquery) where they can then transformed with our DBT model. 
+For the pipeline itself, we use a combination of Python, Prefect and DBT to upload the data to a data lake and then a data warehouse in the Google Cloud Platform (GCP). The processing is done in batches so that new values can be uploaded after each trading day. The data are uploaded to the Google Coud Storage (GCS) Bucket data lake before being transported to a data warehouse (Bigquery) where they can then be transformed with our DBT model. 
 
 #### Dashboard
 
