@@ -64,7 +64,7 @@ crontab -e
 
 - The Transform of the latest data is done in DBT. We create an 'Environment' called 'DailyEnvironment' and set the Dataset to the project name we have chosen to host our DBT model (in this case, 'stock_analysis_jfw'). We then create a new job which we call 'DailyTransform' which uses 'DailyEnvironment' and issues the commands 'dbt build' and 'dbt run'. This job is run on a schedule so that it executes at 5:00 UTC on Tuesday through Saturday, after the markets have closed. This job runs the dbt model 'sp500_newtable.sql' which then recreates the 'gain' column in 'sp500_newtable'. 
 
-- Once the new table has been created in BigQuery and updated each day with a batch, we will perform some analysis in Google Data Studio. First go to the <URL>, and then create a new data source. One then chooses the new table that was created ('sp500_newtable') and clicks on 'Connect'. 
+- Once the new table has been created in BigQuery and updated each day with a batch, we will perform some analysis in Google Data Studio. First go to https://lookerstudio.google.com/navigation/reporting and create a new data source. One then chooses the new table that was created ('sp500_newtable') and clicks on 'Connect'. 
 
 - In Google Data Studio, we create a new field called 'Daily gains (%)' in order to plot a histogram of the distribution of daily gains. To do this, we go to 'Add a field', set the Field Name as 'gainbin' and then add the following formula: 
 
