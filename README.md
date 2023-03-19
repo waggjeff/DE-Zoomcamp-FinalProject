@@ -1,7 +1,7 @@
 ## Data Engineering Bootcamp Final Project: An Analysis of 10 years of the S&P500 Stock Index
 ### Jeff Wagg - March, 2023
 
-The Standard and Poor's 500 (S&P500) stock index tracks the performance of 500 large US companies. It was founded in the late 1950s and can be a good indicator of the economic health of the nation. After each trading day, the price of the index fund is updated and it would therefore be useful to have an automatic means of calculating the typical gains achieved on a daily basis. To achieve this, we create a pipeline that uses historical price data (opening and closing prices) from the S&P500, and processes these data in an Extract Load and Transform (ELT) pipeline. The pipeline is capable of calculating the daily gains of the index, and updates the tables in the Data Warehouse (BigQuery) using batch processing. 
+The Standard and Poor's 500 (S&P500) stock index tracks the performance of 500 large US companies. It was founded in the late 1950s and can be a good indicator of the economic health of the nation. After each trading day, the price of the index fund is updated and it would therefore be useful to have an automatic means of calculating the typical percentage gains on a daily basis. To achieve this, we create a pipeline that uses historical price data (opening and closing prices) from the S&P500, and processes these data in an Extract Load and Transform (ELT) pipeline. The pipeline is capable of calculating the daily gains of the index, and updates the tables in the Data Warehouse (BigQuery) using batch processing. 
 
 #### Data
 
