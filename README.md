@@ -27,7 +27,7 @@ The tranformed data are plotted in a dashboard using Google Date Studio.
 
 - Following this, a prefect account should be created and the requirements file is copied from here: https://github.com/discdiver/prefect-zoomcamp/blob/main/requirements.txt .
 
-- A useer should then run: 
+- A user should then run: 
 ```
 pip install -r requirements.txt
 ```
