@@ -55,7 +55,7 @@ to copy the data from the data lake to the BigQuery data warehouse.
 
 - To write a model for transforming the data, create a branch of the main repository and then in the models directory we create a new file called 'sp500_newtable.sql'. In this case, the model updates the 'mythic-byway-375404.stocks.sp500' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'sp500_newtable'. 
 
-- Now, once the BigQuery table is created, we want to be able to update this with the latest S&P500 data each day. That is where the batch job comes in. A python script called 'scrape_yahoo_finance.py' uses the 'yfinance' package to download the latest market data from Yahoo Finance. It then runs a Prefect flow to append the latest data to the 'sp500' table in BigQuery. We crate a cron job so that this will run Tuesday through Saturday at 4:00 UTC after the markets from the previous days have closed. 
+- Now, once the BigQuery table is created, we want to be able to update this with the latest S&P500 data each day. That is where the batch job comes in. A python script called 'scrape_yahoo_finance.py' uses the 'yfinance' package to download the latest market data from Yahoo Finance. It then runs a Prefect flow to append the latest data to the 'sp500' table in BigQuery. We create a cron job so that this will run Tuesday through Saturday at 4:00 UTC after the markets from the previous days have closed. 
 
 ```
 crontab -e
