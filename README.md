@@ -91,5 +91,5 @@ ELSE 0 END
 - We now plot a time series of the S&P500 index price along with a histogram of the daily gains over the course of the time range of the data. 
               
 
-![My Dashboard](https://github.com/waggjeff/DE-Zoomcamp-FinalProject/blob/main/Analysis_of_Historical_SP500_Data.png "S&P500 Dashboard")
+![My Dashboard](https://github.com/waggjeff/DE-Zoomcamp-FinalProject/blob/main/Analysis_of_Historical_SP500_Data_v4.png "S&P500 Dashboard")
 
