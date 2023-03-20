@@ -51,7 +51,7 @@ to copy the data from the data lake to the BigQuery data warehouse.
 
 - Next, we create a new dbt project with BigQuery as the data warehosue. In this case I called it 'stock_analysis_jfw'. One needs to upload the json key file to connect to BigQuery.
 
-- Once DBT project is inintialized, click on 'Develop'.
+- Once the DBT project is inintialized, click on 'Develop'.
 
 - To write a model for transforming the data, create a branch of the main repository and then in the models directory we create a new file called 'sp500_newtable.sql'. In this case, the model updates the 'mythic-byway-375404.stocks.sp500' table in BigQuery by adding a new column 'gain', which is the percentage daily gain for each stock on a given day. A new table is then written to the Dataset called: 'sp500_newtable'. 
 
